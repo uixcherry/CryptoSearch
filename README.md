@@ -17,7 +17,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET 9.0](https://img.shields.io/badge/.NET-9.0-5C2D91)](https://dotnet.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/yourusername/cryptosearch)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/uixcherry/cryptosearch)
 
 </div>
 
@@ -145,7 +145,7 @@
 
 ```bash
 # Клонирование репозитория
-git clone https://github.com/yourusername/cryptosearch.git
+git clone https://github.com/uixcherry/cryptosearch.git
 cd cryptosearch
 
 # Сборка проекта
