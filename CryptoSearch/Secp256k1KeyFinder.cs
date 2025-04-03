@@ -65,13 +65,13 @@ namespace CryptoSearch
                     {
                         _matchesFound++;
 
-                        string keyHash = BitConverter.ToString(compressedPublicKey).Replace("-", "");
-                        byte networkType = _networkTypes.ContainsKey(keyHash) ? _networkTypes[keyHash] : (byte)0;
+                        var keyHash = Convert.ToHexString(compressedPublicKey);
+                        byte networkType = _networkTypes.TryGetValue(keyHash, out byte value) ? value : (byte)0;
 
-                        KeyMatch match = new KeyMatch
+                        KeyMatch match = new()
                         {
                             PrivateKey = testKey.ToHexString(),
-                            PublicKeyCompressed = BitConverter.ToString(compressedPublicKey).Replace("-", ""),
+                            PublicKeyCompressed = Convert.ToHexString(compressedPublicKey),
                             NetworkType = networkType,
                             Address = DeriveAddressFromPublicKey(compressedPublicKey, networkType)
                         };
