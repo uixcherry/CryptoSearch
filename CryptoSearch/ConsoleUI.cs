@@ -477,7 +477,7 @@ namespace CryptoSearch
                 Console.WriteLine("Тестовая база создана успешно!");
             }
 
-            Secp256k1KeyFinder keyFinder = new Secp256k1KeyFinder();
+            Secp256k1KeyFinder keyFinder = new();
             int keyCount = keyFinder.LoadPublicKeyDatabase(pubKeyDbPath);
 
             Console.WriteLine($"База публичных ключей загружена: {keyCount} ключей.");
@@ -588,8 +588,8 @@ namespace CryptoSearch
 
             Console.WriteLine("Настройка шаблона WIF-ключа...");
 
-            byte[] pattern = new byte[]
-            {
+            byte[] pattern =
+            [
                 0x80, 0x76, 0x87,
                 0x45, 0x23, 0x98,
                 0x23, 0x45, 0x67,
@@ -600,7 +600,7 @@ namespace CryptoSearch
                 0x23, 0x45, 0x67,
                 0x89, 0x01, 0x23,
                 0x45, 0x67, 0x89
-            };
+            ];
 
             for (int i = 0; i < 30; i++)
             {
@@ -619,7 +619,7 @@ namespace CryptoSearch
 
             Console.WriteLine("Настройка шаблона сдвига битов...");
 
-            byte[] pattern = new byte[] { 1, 2, 4, 8, 16, 32, 64, 128 };
+            byte[] pattern = [1, 2, 4, 8, 16, 32, 64, 128];
 
             for (int i = 0; i < 8; i++)
             {
@@ -665,7 +665,7 @@ namespace CryptoSearch
                 Console.Write("\nВведите команду: ");
                 string cmd = Console.ReadLine() ?? "";
 
-                if (cmd.ToLower() == "done")
+                if (cmd.Equals("done", StringComparison.CurrentCultureIgnoreCase))
                 {
                     done = true;
                     continue;
@@ -673,7 +673,7 @@ namespace CryptoSearch
 
                 string[] parts = cmd.Split(' ');
 
-                if (parts.Length >= 3 && parts[0].ToLower() == "set")
+                if (parts.Length >= 3 && parts[0].Equals("set", StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (int.TryParse(parts[1], out int cellIndex) && byte.TryParse(parts[2], out byte value))
                     {
@@ -692,7 +692,7 @@ namespace CryptoSearch
                         Console.WriteLine("Некорректный формат команды 'set'");
                     }
                 }
-                else if (parts.Length >= 2 && parts[0].ToLower() == "toggle")
+                else if (parts.Length >= 2 && parts[0].Equals("toggle", StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (int.TryParse(parts[1], out int cellIndex))
                     {
@@ -722,12 +722,12 @@ namespace CryptoSearch
             Console.ReadKey(true);
         }
 
-        private void CreateDemoPubKeyDatabase(string filePath)
+        private static void CreateDemoPubKeyDatabase(string filePath)
         {
-            using FileStream fs = new FileStream(filePath, FileMode.Create);
-            using BinaryWriter writer = new BinaryWriter(fs);
+            using FileStream fs = new(filePath, FileMode.Create);
+            using BinaryWriter writer = new(fs);
 
-            Random rnd = new Random();
+            Random rnd = new();
             for (int i = 0; i < 10; i++)
             {
                 byte[] pubKey = new byte[33];

@@ -2,7 +2,7 @@
 {
     public class ByteArrayComparer : IEqualityComparer<byte[]>
     {
-        public bool Equals(byte[] x, byte[] y)
+        public bool Equals(byte[]? x, byte[]? y)
         {
             if (x == null || y == null) return x == y;
             if (x.Length != y.Length) return false;
@@ -15,7 +15,7 @@
             return true;
         }
 
-        public int GetHashCode(byte[] obj)
+        public int GetHashCode(byte[]? obj)
         {
             if (obj == null) return 0;
 
